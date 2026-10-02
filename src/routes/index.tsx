@@ -1,24 +1,54 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
+import { AppShell } from "@/components/aza/app-shell";
+import { IdeaCard } from "@/components/aza/idea-card";
+import { OpportunityCard } from "@/components/aza/ui";
+import { ideas, opportunities } from "@/lib/aza-data";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Aza — Opportunities, ideas and tools for young founders" },
+      { name: "description", content: "See grants and scholarships closing this week, plus fresh ideas from the Aza community." },
+      { property: "og:title", content: "Aza — Opportunities closing this week" },
+      { property: "og:description", content: "Grants, scholarships and founder ideas in one feed." },
+    ],
+  }),
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Home() {
+  const closing = opportunities.filter((o) => o.daysLeft <= 10);
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <AppShell>
+      <section className="mb-8 rounded-lg border bg-muted p-5 md:p-6">
+        <p className="text-sm font-medium text-muted-foreground">This week</p>
+        <h1 className="mt-1 text-2xl font-semibold md:text-3xl">
+          {closing.length} opportunities close in the next 10 days
+        </h1>
+        <p className="mt-2 text-sm text-muted-foreground">12 new listings added since Monday · 3 match your profile</p>
+      </section>
+
+      <SectionHead title="Closing soon" to="/discover" />
+      <div className="mb-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {closing.map((o) => <OpportunityCard key={o.id} o={o} />)}
+      </div>
+
+      <SectionHead title="From the community" to="/growth" />
+      <div className="grid gap-3 lg:grid-cols-2">
+        {ideas.slice(0, 2).map((i) => <IdeaCard key={i.id} idea={i} />)}
+      </div>
+    </AppShell>
+  );
+}
+
+function SectionHead({ title, to }: { title: string; to: "/discover" | "/growth" }) {
+  return (
+    <div className="mb-3 flex items-center justify-between">
+      <h2 className="text-lg font-semibold">{title}</h2>
+      <Link to={to} className="inline-flex h-11 items-center gap-1 rounded-md px-2 text-sm font-medium text-primary hover:bg-accent">
+        See all <ArrowRight className="size-4" />
+      </Link>
     </div>
   );
 }

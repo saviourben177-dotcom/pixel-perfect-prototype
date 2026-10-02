@@ -10,33 +10,106 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BusinessRouteImport } from './routes/business'
+import { Route as DiscoverRouteImport } from './routes/discover'
+import { Route as GrowthRouteImport } from './routes/growth'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as GrowthIndexRouteImport } from './routes/growth.index'
+import { Route as GrowthIdeaIdRouteImport } from './routes/growth.$ideaId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BusinessRoute = BusinessRouteImport.update({
+  id: '/business',
+  path: '/business',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiscoverRoute = DiscoverRouteImport.update({
+  id: '/discover',
+  path: '/discover',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GrowthRoute = GrowthRouteImport.update({
+  id: '/growth',
+  path: '/growth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GrowthIndexRoute = GrowthIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => GrowthRoute,
+} as any)
+const GrowthIdeaIdRoute = GrowthIdeaIdRouteImport.update({
+  id: '/$ideaId',
+  path: '/$ideaId',
+  getParentRoute: () => GrowthRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/business': typeof BusinessRoute
+  '/discover': typeof DiscoverRoute
+  '/growth': typeof GrowthRouteWithChildren
+  '/profile': typeof ProfileRoute
+  '/growth/$ideaId': typeof GrowthIdeaIdRoute
+  '/growth/': typeof GrowthIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/business': typeof BusinessRoute
+  '/discover': typeof DiscoverRoute
+  '/profile': typeof ProfileRoute
+  '/growth/$ideaId': typeof GrowthIdeaIdRoute
+  '/growth': typeof GrowthIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/business': typeof BusinessRoute
+  '/discover': typeof DiscoverRoute
+  '/growth': typeof GrowthRouteWithChildren
+  '/profile': typeof ProfileRoute
+  '/growth/$ideaId': typeof GrowthIdeaIdRoute
+  '/growth/': typeof GrowthIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/business'
+    | '/discover'
+    | '/growth'
+    | '/profile'
+    | '/growth/$ideaId'
+    | '/growth/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    '/' | '/business' | '/discover' | '/profile' | '/growth/$ideaId' | '/growth'
+  id:
+    | '__root__'
+    | '/'
+    | '/business'
+    | '/discover'
+    | '/growth'
+    | '/profile'
+    | '/growth/$ideaId'
+    | '/growth/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BusinessRoute: typeof BusinessRoute
+  DiscoverRoute: typeof DiscoverRoute
+  GrowthRoute: typeof GrowthRouteWithChildren
+  ProfileRoute: typeof ProfileRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +121,70 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/business': {
+      id: '/business'
+      path: '/business'
+      fullPath: '/business'
+      preLoaderRoute: typeof BusinessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/discover': {
+      id: '/discover'
+      path: '/discover'
+      fullPath: '/discover'
+      preLoaderRoute: typeof DiscoverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/growth': {
+      id: '/growth'
+      path: '/growth'
+      fullPath: '/growth'
+      preLoaderRoute: typeof GrowthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/growth/': {
+      id: '/growth/'
+      path: '/'
+      fullPath: '/growth/'
+      preLoaderRoute: typeof GrowthIndexRouteImport
+      parentRoute: typeof GrowthRoute
+    }
+    '/growth/$ideaId': {
+      id: '/growth/$ideaId'
+      path: '/$ideaId'
+      fullPath: '/growth/$ideaId'
+      preLoaderRoute: typeof GrowthIdeaIdRouteImport
+      parentRoute: typeof GrowthRoute
+    }
   }
 }
 
+interface GrowthRouteChildren {
+  GrowthIdeaIdRoute: typeof GrowthIdeaIdRoute
+  GrowthIndexRoute: typeof GrowthIndexRoute
+}
+
+const GrowthRouteChildren: GrowthRouteChildren = {
+  GrowthIdeaIdRoute: GrowthIdeaIdRoute,
+  GrowthIndexRoute: GrowthIndexRoute,
+}
+
+const GrowthRouteWithChildren =
+  GrowthRoute._addFileChildren(GrowthRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BusinessRoute: BusinessRoute,
+  DiscoverRoute: DiscoverRoute,
+  GrowthRoute: GrowthRouteWithChildren,
+  ProfileRoute: ProfileRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { AppShell } from "@/components/aza/app-shell";
 import { IdeaActions } from "@/components/aza/idea-card";
 import { AuthorLine, Tag } from "@/components/aza/ui";
-import { ideas, me, people, type Comment } from "@/lib/aza-data";
+import { ideas, me, getPerson, type Comment } from "@/lib/aza-data";
 
 export const Route = createFileRoute("/growth/$ideaId")({
   loader: ({ params }) => {
@@ -15,7 +15,7 @@ export const Route = createFileRoute("/growth/$ideaId")({
   head: ({ loaderData }) => {
     if (!loaderData) return { meta: [{ title: "Idea not found — Aza" }, { name: "robots", content: "noindex" }] };
     const { idea } = loaderData;
-    const t = `${people[idea.author].name}: ${idea.ask} — Aza`;
+    const t = `${getPerson(idea.author).name}: ${idea.ask} — Aza`;
     const d = idea.pitch.slice(0, 150);
     return { meta: [{ title: t }, { name: "description", content: d }, { property: "og:title", content: t }, { property: "og:description", content: d }] };
   },

@@ -105,7 +105,7 @@ function Currency() {
   const [amt, setAmt] = useState(100);
   const [from, setFrom] = useState("USD");
   const [to, setTo] = useState("NGN");
-  const out = (amt * rates[from]) / rates[to];
+  const out = (amt * (rates[from] ?? 1)) / (rates[to] ?? 1);
   const sel = "h-11 rounded-md border border-input bg-background px-3 text-sm";
   return (
     <div className="space-y-4">

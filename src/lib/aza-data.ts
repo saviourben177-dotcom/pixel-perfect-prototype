@@ -1,7 +1,7 @@
 // Sample data for the preview. Replace with real queries when wired to a backend.
 export type Person = { id: string; name: string; role?: string; location?: string; initials: string };
 
-export const people: Record<string, Person> = {
+const peopleData = {
   ada: { id: "ada", name: "Adaeze Okafor", role: "Agritech founder", location: "Enugu", initials: "AO" },
   tunde: { id: "tunde", name: "Tunde Bakare", role: "Backend engineer", location: "Lagos", initials: "TB" },
   zainab: { id: "zainab", name: "Zainab Musa", role: "Product designer", location: "Kano", initials: "ZM" },
@@ -9,7 +9,9 @@ export const people: Record<string, Person> = {
   ife: { id: "ife", name: "Ifeoluwa Adeyemi", role: "Student, UNILAG", location: "Lagos", initials: "IA" },
 };
 
-export const me = people.ife;
+export const people: Record<string, Person> & typeof peopleData = peopleData;
+export const me: Person = peopleData.ife;
+export const getPerson = (id: string): Person => people[id] ?? { id, name: "Member", initials: "?" };
 
 export type Ask = "Seeking Co-Founder" | "Feedback Wanted" | "Looking for Beta Testers" | "Distribution Advice";
 

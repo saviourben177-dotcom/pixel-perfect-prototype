@@ -2,10 +2,10 @@ import { Link } from "@tanstack/react-router";
 import { BadgeCheck, Clock } from "lucide-react";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
-import { people, timeAgo, type Opportunity } from "@/lib/aza-data";
+import { getPerson, timeAgo, type Opportunity } from "@/lib/aza-data";
 
 export function Avatar({ id, size = 40 }: { id: string; size?: number }) {
-  const p = people[id];
+  const p = getPerson(id);
   return (
     <span
       aria-hidden
@@ -80,7 +80,7 @@ export function OpportunityCard({ o }: { o: Opportunity }) {
 }
 
 export function AuthorLine({ id, hoursAgo, op }: { id: string; hoursAgo: number; op?: boolean }) {
-  const p = people[id];
+  const p = getPerson(id);
   return (
     <div className="flex min-w-0 items-center gap-3">
       <Link to="/profile" className="rounded-full" aria-label={`${p.name}'s profile`}>

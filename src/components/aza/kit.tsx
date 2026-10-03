@@ -112,7 +112,7 @@ export function Form({ onSubmit, submitLabel, success = "Saved", children, cance
 export function LinkRow({ to, params, icon: Icon, title, sub, right }: { to: string; params?: Record<string, string>; icon?: LucideIcon; title: string; sub?: string; right?: ReactNode }) {
   return (
     <li>
-      <Link to={to} params={params} className="grid min-h-16 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 p-4 hover:bg-accent">
+      <Link to={to} {...(params ? { params: params as never } : {})} className="grid min-h-16 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 p-4 hover:bg-accent">
         {Icon ? <span className="grid size-10 place-items-center rounded-md border bg-muted"><Icon className="size-4" /></span> : <span />}
         <span className="min-w-0">
           <span className="block truncate font-semibold">{title}</span>

@@ -20,7 +20,7 @@ export function IdeaActions({ idea, full }: { idea: Idea; full?: boolean }) {
         <span className="tabular">{idea.upvotes + (up ? 1 : 0)}</span>
       </button>
       {!full && (
-        <Link to="/growth/$ideaId" params={{ ideaId: idea.id }} className={btn} aria-label="Comments">
+        <Link to="/growth/ideas/$ideaId" params={{ ideaId: idea.id }} className={btn} aria-label="Comments">
           <MessageCircle className="size-4" strokeWidth={2} />
           <span className="tabular">{countComments(idea)}</span>
         </Link>
@@ -32,7 +32,7 @@ export function IdeaActions({ idea, full }: { idea: Idea; full?: boolean }) {
         type="button"
         aria-label="Share"
         className={btn}
-        onClick={() => navigator.clipboard?.writeText(`${location.origin}/growth/${idea.id}`)}
+        onClick={() => navigator.clipboard?.writeText(`${location.origin}/growth/ideas/${idea.id}`)}
       >
         <Share2 className="size-4" strokeWidth={2} />
       </button>
@@ -51,7 +51,7 @@ export function IdeaCard({ idea }: { idea: Idea }) {
         <Tag tone="primary" icon={<Target className="size-3.5" strokeWidth={2} />}>{idea.ask}</Tag>
       </div>
       <Link
-        to="/growth/$ideaId"
+        to="/growth/ideas/$ideaId"
         params={{ ideaId: idea.id }}
         className="line-clamp-4 rounded-md text-base leading-relaxed text-foreground"
       >

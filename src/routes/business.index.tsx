@@ -5,7 +5,7 @@ import { AppShell } from "@/components/aza/app-shell";
 import { PageHeader, Tag } from "@/components/aza/ui";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/business")({
+export const Route = createFileRoute("/business/")({
   head: () => ({
     meta: [
       { title: "Business tools — Aza" },

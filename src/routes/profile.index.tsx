@@ -5,7 +5,7 @@ import { IdeaCard } from "@/components/aza/idea-card";
 import { Avatar, OpportunityCard } from "@/components/aza/ui";
 import { ideas, me, opportunities } from "@/lib/aza-data";
 
-export const Route = createFileRoute("/profile")({
+export const Route = createFileRoute("/profile/")({
   head: () => ({
     meta: [
       { title: "Your profile — Aza" },

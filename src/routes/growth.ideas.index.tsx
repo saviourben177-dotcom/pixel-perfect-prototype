@@ -5,7 +5,7 @@ import { IdeaCard } from "@/components/aza/idea-card";
 import { PageHeader } from "@/components/aza/ui";
 import { ideas } from "@/lib/aza-data";
 
-export const Route = createFileRoute("/growth/")({
+export const Route = createFileRoute("/growth/ideas/")({
   head: () => ({
     meta: [
       { title: "Ideas feed — Aza Growth" },

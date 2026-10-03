@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { PenLine } from "lucide-react";
 import { AppShell } from "@/components/aza/app-shell";
 import { IdeaCard } from "@/components/aza/idea-card";
@@ -24,9 +24,9 @@ function Growth() {
         title="Ideas"
         sub="What people are building, and what they need from you"
         action={
-          <button type="button" className="inline-flex h-11 items-center gap-2 rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground hover:opacity-90">
+          <Link to="/growth/ideas/new" className="inline-flex h-11 items-center gap-2 rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground hover:opacity-90">
             <PenLine className="size-4" /> <span className="hidden sm:inline">Share an idea</span>
-          </button>
+          </Link>
         }
       />
       <div className="mx-auto grid max-w-5xl gap-3 lg:grid-cols-2">

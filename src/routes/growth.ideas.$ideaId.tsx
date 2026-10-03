@@ -7,7 +7,7 @@ import { IdeaActions } from "@/components/aza/idea-card";
 import { AuthorLine, Tag } from "@/components/aza/ui";
 import { ideas, me, getPerson, type Comment } from "@/lib/aza-data";
 
-export const Route = createFileRoute("/growth/$ideaId")({
+export const Route = createFileRoute("/growth/ideas/$ideaId")({
   loader: ({ params }) => {
     const idea = ideas.find((i) => i.id === params.ideaId);
     if (!idea) throw notFound();
@@ -48,7 +48,7 @@ function IdeaThread() {
   return (
     <AppShell>
       <div className="mx-auto max-w-2xl">
-        <Link to="/growth" className="-ml-2 mb-4 inline-flex h-11 items-center gap-1.5 rounded-md px-2 text-sm font-medium text-muted-foreground hover:text-foreground">
+        <Link to="/growth/ideas" className="-ml-2 mb-4 inline-flex h-11 items-center gap-1.5 rounded-md px-2 text-sm font-medium text-muted-foreground hover:text-foreground">
           <ArrowLeft className="size-4" /> Ideas
         </Link>
 

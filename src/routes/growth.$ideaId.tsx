@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Send, Target } from "lucide-react";
 import { useRef, useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { AppShell } from "@/components/aza/app-shell";
 import { IdeaActions } from "@/components/aza/idea-card";
 import { AuthorLine, Tag } from "@/components/aza/ui";
@@ -26,13 +27,16 @@ export const Route = createFileRoute("/growth/$ideaId")({
 });
 
 const prompts = ["Give feedback on this concept...", "Share your experience with this market...", "Ask the creator a question..."];
+const shortPrompts = ["Give feedback...", "Share your experience...", "Ask the creator..."];
 
 function IdeaThread() {
   const { idea } = Route.useLoaderData();
   const [comments, setComments] = useState<Comment[]>(idea.comments);
   const [text, setText] = useState("");
   const ta = useRef<HTMLTextAreaElement>(null);
-  const placeholder = prompts[idea.id.length % prompts.length];
+  const isMobile = useIsMobile();
+  const pi = idea.id.length % prompts.length;
+  const placeholder = (isMobile ? shortPrompts : prompts)[pi];
 
   const submit = () => {
     if (!text.trim()) return;

@@ -21,12 +21,12 @@ function Home() {
   const closing = opportunities.filter((o) => o.daysLeft <= 10);
   return (
     <AppShell>
-      <section className="mb-8 rounded-lg border bg-muted p-5 md:p-6">
-        <p className="text-sm font-medium text-muted-foreground">This week</p>
-        <h1 className="mt-1 text-2xl font-semibold md:text-3xl">
+      <section className="mb-8 rounded-lg border border-primary/20 bg-primary-soft p-5 shadow-[var(--shadow-card)] md:p-6">
+        <p className="text-sm font-bold uppercase tracking-wide text-primary-strong">This week</p>
+        <h1 className="mt-1 text-2xl md:text-3xl">
           {closing.length} opportunities close in the next 10 days
         </h1>
-        <p className="mt-2 text-sm text-muted-foreground">12 new listings added since Monday · 3 match your profile</p>
+        <p className="mt-2 text-sm text-foreground/75">12 new listings added since Monday · 3 match your profile</p>
       </section>
 
       <SectionHead title="Closing soon" to="/discover" />
@@ -45,8 +45,8 @@ function Home() {
 function SectionHead({ title, to }: { title: string; to: "/discover" | "/growth" }) {
   return (
     <div className="mb-3 flex items-center justify-between">
-      <h2 className="text-lg font-semibold">{title}</h2>
-      <Link to={to} className="inline-flex h-11 items-center gap-1 rounded-md px-2 text-sm font-medium text-primary hover:bg-accent">
+      <h2 className="text-lg">{title}</h2>
+      <Link to={to} className="inline-flex h-11 items-center gap-1 rounded-md px-2 text-sm font-bold text-primary-strong hover:bg-primary-soft">
         See all <ArrowRight className="size-4" />
       </Link>
     </div>

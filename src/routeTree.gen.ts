@@ -15,10 +15,29 @@ import { Route as DiscoverRouteImport } from './routes/discover'
 import { Route as GrowthRouteImport } from './routes/growth'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as BusinessIndexRouteImport } from './routes/business.index'
+import { Route as BusinessFundingRouteImport } from './routes/business.funding'
+import { Route as BusinessIncubatorsRouteImport } from './routes/business.incubators'
+import { Route as BusinessPlanRouteImport } from './routes/business.plan'
+import { Route as GrowthIndexRouteImport } from './routes/growth.index'
+import { Route as GrowthAssistantRouteImport } from './routes/growth.assistant'
+import { Route as GrowthCoursesRouteImport } from './routes/growth.courses'
+import { Route as GrowthMyIdeasRouteImport } from './routes/growth.my-ideas'
+import { Route as GrowthSkillsRouteImport } from './routes/growth.skills'
+import { Route as OpportunitiesIdRouteImport } from './routes/opportunities.$id'
 import { Route as ProfileIndexRouteImport } from './routes/profile.index'
+import { Route as BusinessDirectoryIndexRouteImport } from './routes/business.directory.index'
+import { Route as BusinessDirectoryIdRouteImport } from './routes/business.directory.$id'
+import { Route as BusinessDirectoryNewRouteImport } from './routes/business.directory.new'
+import { Route as BusinessMarketplaceIndexRouteImport } from './routes/business.marketplace.index'
+import { Route as BusinessMarketplaceNewRouteImport } from './routes/business.marketplace.new'
+import { Route as BusinessTeamFinderIndexRouteImport } from './routes/business.team-finder.index'
+import { Route as BusinessTeamFinderTeamIdRouteImport } from './routes/business.team-finder.$teamId'
+import { Route as BusinessTeamFinderMyRequestsRouteImport } from './routes/business.team-finder.my-requests'
 import { Route as GrowthIdeasIndexRouteImport } from './routes/growth.ideas.index'
 import { Route as GrowthIdeasIdeaIdRouteImport } from './routes/growth.ideas.$ideaId'
 import { Route as GrowthIdeasNewRouteImport } from './routes/growth.ideas.new'
+import { Route as BusinessTeamFinderTeamIdJoinRouteImport } from './routes/business.team-finder.$teamId.join'
+import { Route as BusinessTeamFinderMessagesRequestIdRouteImport } from './routes/business.team-finder.messages.$requestId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -50,11 +69,99 @@ const BusinessIndexRoute = BusinessIndexRouteImport.update({
   path: '/',
   getParentRoute: () => BusinessRoute,
 } as any)
+const BusinessFundingRoute = BusinessFundingRouteImport.update({
+  id: '/funding',
+  path: '/funding',
+  getParentRoute: () => BusinessRoute,
+} as any)
+const BusinessIncubatorsRoute = BusinessIncubatorsRouteImport.update({
+  id: '/incubators',
+  path: '/incubators',
+  getParentRoute: () => BusinessRoute,
+} as any)
+const BusinessPlanRoute = BusinessPlanRouteImport.update({
+  id: '/plan',
+  path: '/plan',
+  getParentRoute: () => BusinessRoute,
+} as any)
+const GrowthIndexRoute = GrowthIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => GrowthRoute,
+} as any)
+const GrowthAssistantRoute = GrowthAssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
+  getParentRoute: () => GrowthRoute,
+} as any)
+const GrowthCoursesRoute = GrowthCoursesRouteImport.update({
+  id: '/courses',
+  path: '/courses',
+  getParentRoute: () => GrowthRoute,
+} as any)
+const GrowthMyIdeasRoute = GrowthMyIdeasRouteImport.update({
+  id: '/my-ideas',
+  path: '/my-ideas',
+  getParentRoute: () => GrowthRoute,
+} as any)
+const GrowthSkillsRoute = GrowthSkillsRouteImport.update({
+  id: '/skills',
+  path: '/skills',
+  getParentRoute: () => GrowthRoute,
+} as any)
+const OpportunitiesIdRoute = OpportunitiesIdRouteImport.update({
+  id: '/opportunities/$id',
+  path: '/opportunities/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProfileIndexRoute = ProfileIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => ProfileRoute,
 } as any)
+const BusinessDirectoryIndexRoute = BusinessDirectoryIndexRouteImport.update({
+  id: '/directory/',
+  path: '/directory/',
+  getParentRoute: () => BusinessRoute,
+} as any)
+const BusinessDirectoryIdRoute = BusinessDirectoryIdRouteImport.update({
+  id: '/directory/$id',
+  path: '/directory/$id',
+  getParentRoute: () => BusinessRoute,
+} as any)
+const BusinessDirectoryNewRoute = BusinessDirectoryNewRouteImport.update({
+  id: '/directory/new',
+  path: '/directory/new',
+  getParentRoute: () => BusinessRoute,
+} as any)
+const BusinessMarketplaceIndexRoute =
+  BusinessMarketplaceIndexRouteImport.update({
+    id: '/marketplace/',
+    path: '/marketplace/',
+    getParentRoute: () => BusinessRoute,
+  } as any)
+const BusinessMarketplaceNewRoute = BusinessMarketplaceNewRouteImport.update({
+  id: '/marketplace/new',
+  path: '/marketplace/new',
+  getParentRoute: () => BusinessRoute,
+} as any)
+const BusinessTeamFinderIndexRoute = BusinessTeamFinderIndexRouteImport.update({
+  id: '/team-finder/',
+  path: '/team-finder/',
+  getParentRoute: () => BusinessRoute,
+} as any)
+const BusinessTeamFinderTeamIdRoute =
+  BusinessTeamFinderTeamIdRouteImport.update({
+    id: '/team-finder/$teamId',
+    path: '/team-finder/$teamId',
+    getParentRoute: () => BusinessRoute,
+  } as any)
+const BusinessTeamFinderMyRequestsRoute =
+  BusinessTeamFinderMyRequestsRouteImport.update({
+    id: '/team-finder/my-requests',
+    path: '/team-finder/my-requests',
+    getParentRoute: () => BusinessRoute,
+  } as any)
 const GrowthIdeasIndexRoute = GrowthIdeasIndexRouteImport.update({
   id: '/ideas/',
   path: '/ideas/',
@@ -70,6 +177,18 @@ const GrowthIdeasNewRoute = GrowthIdeasNewRouteImport.update({
   path: '/ideas/new',
   getParentRoute: () => GrowthRoute,
 } as any)
+const BusinessTeamFinderTeamIdJoinRoute =
+  BusinessTeamFinderTeamIdJoinRouteImport.update({
+    id: '/join',
+    path: '/join',
+    getParentRoute: () => BusinessTeamFinderTeamIdRoute,
+  } as any)
+const BusinessTeamFinderMessagesRequestIdRoute =
+  BusinessTeamFinderMessagesRequestIdRouteImport.update({
+    id: '/team-finder/messages/$requestId',
+    path: '/team-finder/messages/$requestId',
+    getParentRoute: () => BusinessRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -77,21 +196,58 @@ export interface FileRoutesByFullPath {
   '/discover': typeof DiscoverRoute
   '/growth': typeof GrowthRouteWithChildren
   '/profile': typeof ProfileRouteWithChildren
+  '/business/funding': typeof BusinessFundingRoute
+  '/business/incubators': typeof BusinessIncubatorsRoute
+  '/business/plan': typeof BusinessPlanRoute
+  '/growth/assistant': typeof GrowthAssistantRoute
+  '/growth/courses': typeof GrowthCoursesRoute
+  '/growth/my-ideas': typeof GrowthMyIdeasRoute
+  '/growth/skills': typeof GrowthSkillsRoute
+  '/opportunities/$id': typeof OpportunitiesIdRoute
   '/business/': typeof BusinessIndexRoute
+  '/growth/': typeof GrowthIndexRoute
   '/profile/': typeof ProfileIndexRoute
+  '/business/directory/$id': typeof BusinessDirectoryIdRoute
+  '/business/directory/new': typeof BusinessDirectoryNewRoute
+  '/business/marketplace/new': typeof BusinessMarketplaceNewRoute
+  '/business/team-finder/$teamId': typeof BusinessTeamFinderTeamIdRouteWithChildren
+  '/business/team-finder/my-requests': typeof BusinessTeamFinderMyRequestsRoute
   '/growth/ideas/$ideaId': typeof GrowthIdeasIdeaIdRoute
   '/growth/ideas/new': typeof GrowthIdeasNewRoute
+  '/business/directory/': typeof BusinessDirectoryIndexRoute
+  '/business/marketplace/': typeof BusinessMarketplaceIndexRoute
+  '/business/team-finder/': typeof BusinessTeamFinderIndexRoute
   '/growth/ideas/': typeof GrowthIdeasIndexRoute
+  '/business/team-finder/$teamId/join': typeof BusinessTeamFinderTeamIdJoinRoute
+  '/business/team-finder/messages/$requestId': typeof BusinessTeamFinderMessagesRequestIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/discover': typeof DiscoverRoute
-  '/growth': typeof GrowthRouteWithChildren
+  '/business/funding': typeof BusinessFundingRoute
+  '/business/incubators': typeof BusinessIncubatorsRoute
+  '/business/plan': typeof BusinessPlanRoute
+  '/growth/assistant': typeof GrowthAssistantRoute
+  '/growth/courses': typeof GrowthCoursesRoute
+  '/growth/my-ideas': typeof GrowthMyIdeasRoute
+  '/growth/skills': typeof GrowthSkillsRoute
+  '/opportunities/$id': typeof OpportunitiesIdRoute
   '/business': typeof BusinessIndexRoute
+  '/growth': typeof GrowthIndexRoute
   '/profile': typeof ProfileIndexRoute
+  '/business/directory/$id': typeof BusinessDirectoryIdRoute
+  '/business/directory/new': typeof BusinessDirectoryNewRoute
+  '/business/marketplace/new': typeof BusinessMarketplaceNewRoute
+  '/business/team-finder/$teamId': typeof BusinessTeamFinderTeamIdRouteWithChildren
+  '/business/team-finder/my-requests': typeof BusinessTeamFinderMyRequestsRoute
   '/growth/ideas/$ideaId': typeof GrowthIdeasIdeaIdRoute
   '/growth/ideas/new': typeof GrowthIdeasNewRoute
+  '/business/directory': typeof BusinessDirectoryIndexRoute
+  '/business/marketplace': typeof BusinessMarketplaceIndexRoute
+  '/business/team-finder': typeof BusinessTeamFinderIndexRoute
   '/growth/ideas': typeof GrowthIdeasIndexRoute
+  '/business/team-finder/$teamId/join': typeof BusinessTeamFinderTeamIdJoinRoute
+  '/business/team-finder/messages/$requestId': typeof BusinessTeamFinderMessagesRequestIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -100,11 +256,30 @@ export interface FileRoutesById {
   '/discover': typeof DiscoverRoute
   '/growth': typeof GrowthRouteWithChildren
   '/profile': typeof ProfileRouteWithChildren
+  '/business/funding': typeof BusinessFundingRoute
+  '/business/incubators': typeof BusinessIncubatorsRoute
+  '/business/plan': typeof BusinessPlanRoute
+  '/growth/assistant': typeof GrowthAssistantRoute
+  '/growth/courses': typeof GrowthCoursesRoute
+  '/growth/my-ideas': typeof GrowthMyIdeasRoute
+  '/growth/skills': typeof GrowthSkillsRoute
+  '/opportunities/$id': typeof OpportunitiesIdRoute
   '/business/': typeof BusinessIndexRoute
+  '/growth/': typeof GrowthIndexRoute
   '/profile/': typeof ProfileIndexRoute
+  '/business/directory/$id': typeof BusinessDirectoryIdRoute
+  '/business/directory/new': typeof BusinessDirectoryNewRoute
+  '/business/marketplace/new': typeof BusinessMarketplaceNewRoute
+  '/business/team-finder/$teamId': typeof BusinessTeamFinderTeamIdRouteWithChildren
+  '/business/team-finder/my-requests': typeof BusinessTeamFinderMyRequestsRoute
   '/growth/ideas/$ideaId': typeof GrowthIdeasIdeaIdRoute
   '/growth/ideas/new': typeof GrowthIdeasNewRoute
+  '/business/directory/': typeof BusinessDirectoryIndexRoute
+  '/business/marketplace/': typeof BusinessMarketplaceIndexRoute
+  '/business/team-finder/': typeof BusinessTeamFinderIndexRoute
   '/growth/ideas/': typeof GrowthIdeasIndexRoute
+  '/business/team-finder/$teamId/join': typeof BusinessTeamFinderTeamIdJoinRoute
+  '/business/team-finder/messages/$requestId': typeof BusinessTeamFinderMessagesRequestIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -114,21 +289,58 @@ export interface FileRouteTypes {
     | '/discover'
     | '/growth'
     | '/profile'
+    | '/business/funding'
+    | '/business/incubators'
+    | '/business/plan'
+    | '/growth/assistant'
+    | '/growth/courses'
+    | '/growth/my-ideas'
+    | '/growth/skills'
+    | '/opportunities/$id'
     | '/business/'
+    | '/growth/'
     | '/profile/'
+    | '/business/directory/$id'
+    | '/business/directory/new'
+    | '/business/marketplace/new'
+    | '/business/team-finder/$teamId'
+    | '/business/team-finder/my-requests'
     | '/growth/ideas/$ideaId'
     | '/growth/ideas/new'
+    | '/business/directory/'
+    | '/business/marketplace/'
+    | '/business/team-finder/'
     | '/growth/ideas/'
+    | '/business/team-finder/$teamId/join'
+    | '/business/team-finder/messages/$requestId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/discover'
-    | '/growth'
+    | '/business/funding'
+    | '/business/incubators'
+    | '/business/plan'
+    | '/growth/assistant'
+    | '/growth/courses'
+    | '/growth/my-ideas'
+    | '/growth/skills'
+    | '/opportunities/$id'
     | '/business'
+    | '/growth'
     | '/profile'
+    | '/business/directory/$id'
+    | '/business/directory/new'
+    | '/business/marketplace/new'
+    | '/business/team-finder/$teamId'
+    | '/business/team-finder/my-requests'
     | '/growth/ideas/$ideaId'
     | '/growth/ideas/new'
+    | '/business/directory'
+    | '/business/marketplace'
+    | '/business/team-finder'
     | '/growth/ideas'
+    | '/business/team-finder/$teamId/join'
+    | '/business/team-finder/messages/$requestId'
   id:
     | '__root__'
     | '/'
@@ -136,11 +348,30 @@ export interface FileRouteTypes {
     | '/discover'
     | '/growth'
     | '/profile'
+    | '/business/funding'
+    | '/business/incubators'
+    | '/business/plan'
+    | '/growth/assistant'
+    | '/growth/courses'
+    | '/growth/my-ideas'
+    | '/growth/skills'
+    | '/opportunities/$id'
     | '/business/'
+    | '/growth/'
     | '/profile/'
+    | '/business/directory/$id'
+    | '/business/directory/new'
+    | '/business/marketplace/new'
+    | '/business/team-finder/$teamId'
+    | '/business/team-finder/my-requests'
     | '/growth/ideas/$ideaId'
     | '/growth/ideas/new'
+    | '/business/directory/'
+    | '/business/marketplace/'
+    | '/business/team-finder/'
     | '/growth/ideas/'
+    | '/business/team-finder/$teamId/join'
+    | '/business/team-finder/messages/$requestId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -149,6 +380,7 @@ export interface RootRouteChildren {
   DiscoverRoute: typeof DiscoverRoute
   GrowthRoute: typeof GrowthRouteWithChildren
   ProfileRoute: typeof ProfileRouteWithChildren
+  OpportunitiesIdRoute: typeof OpportunitiesIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -195,12 +427,131 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BusinessIndexRouteImport
       parentRoute: typeof BusinessRoute
     }
+    '/business/funding': {
+      id: '/business/funding'
+      path: '/funding'
+      fullPath: '/business/funding'
+      preLoaderRoute: typeof BusinessFundingRouteImport
+      parentRoute: typeof BusinessRoute
+    }
+    '/business/incubators': {
+      id: '/business/incubators'
+      path: '/incubators'
+      fullPath: '/business/incubators'
+      preLoaderRoute: typeof BusinessIncubatorsRouteImport
+      parentRoute: typeof BusinessRoute
+    }
+    '/business/plan': {
+      id: '/business/plan'
+      path: '/plan'
+      fullPath: '/business/plan'
+      preLoaderRoute: typeof BusinessPlanRouteImport
+      parentRoute: typeof BusinessRoute
+    }
+    '/growth/': {
+      id: '/growth/'
+      path: '/'
+      fullPath: '/growth/'
+      preLoaderRoute: typeof GrowthIndexRouteImport
+      parentRoute: typeof GrowthRoute
+    }
+    '/growth/assistant': {
+      id: '/growth/assistant'
+      path: '/assistant'
+      fullPath: '/growth/assistant'
+      preLoaderRoute: typeof GrowthAssistantRouteImport
+      parentRoute: typeof GrowthRoute
+    }
+    '/growth/courses': {
+      id: '/growth/courses'
+      path: '/courses'
+      fullPath: '/growth/courses'
+      preLoaderRoute: typeof GrowthCoursesRouteImport
+      parentRoute: typeof GrowthRoute
+    }
+    '/growth/my-ideas': {
+      id: '/growth/my-ideas'
+      path: '/my-ideas'
+      fullPath: '/growth/my-ideas'
+      preLoaderRoute: typeof GrowthMyIdeasRouteImport
+      parentRoute: typeof GrowthRoute
+    }
+    '/growth/skills': {
+      id: '/growth/skills'
+      path: '/skills'
+      fullPath: '/growth/skills'
+      preLoaderRoute: typeof GrowthSkillsRouteImport
+      parentRoute: typeof GrowthRoute
+    }
+    '/opportunities/$id': {
+      id: '/opportunities/$id'
+      path: '/opportunities/$id'
+      fullPath: '/opportunities/$id'
+      preLoaderRoute: typeof OpportunitiesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/profile/': {
       id: '/profile/'
       path: '/'
       fullPath: '/profile/'
       preLoaderRoute: typeof ProfileIndexRouteImport
       parentRoute: typeof ProfileRoute
+    }
+    '/business/directory/': {
+      id: '/business/directory/'
+      path: '/directory'
+      fullPath: '/business/directory/'
+      preLoaderRoute: typeof BusinessDirectoryIndexRouteImport
+      parentRoute: typeof BusinessRoute
+    }
+    '/business/directory/$id': {
+      id: '/business/directory/$id'
+      path: '/directory/$id'
+      fullPath: '/business/directory/$id'
+      preLoaderRoute: typeof BusinessDirectoryIdRouteImport
+      parentRoute: typeof BusinessRoute
+    }
+    '/business/directory/new': {
+      id: '/business/directory/new'
+      path: '/directory/new'
+      fullPath: '/business/directory/new'
+      preLoaderRoute: typeof BusinessDirectoryNewRouteImport
+      parentRoute: typeof BusinessRoute
+    }
+    '/business/marketplace/': {
+      id: '/business/marketplace/'
+      path: '/marketplace'
+      fullPath: '/business/marketplace/'
+      preLoaderRoute: typeof BusinessMarketplaceIndexRouteImport
+      parentRoute: typeof BusinessRoute
+    }
+    '/business/marketplace/new': {
+      id: '/business/marketplace/new'
+      path: '/marketplace/new'
+      fullPath: '/business/marketplace/new'
+      preLoaderRoute: typeof BusinessMarketplaceNewRouteImport
+      parentRoute: typeof BusinessRoute
+    }
+    '/business/team-finder/': {
+      id: '/business/team-finder/'
+      path: '/team-finder'
+      fullPath: '/business/team-finder/'
+      preLoaderRoute: typeof BusinessTeamFinderIndexRouteImport
+      parentRoute: typeof BusinessRoute
+    }
+    '/business/team-finder/$teamId': {
+      id: '/business/team-finder/$teamId'
+      path: '/team-finder/$teamId'
+      fullPath: '/business/team-finder/$teamId'
+      preLoaderRoute: typeof BusinessTeamFinderTeamIdRouteImport
+      parentRoute: typeof BusinessRoute
+    }
+    '/business/team-finder/my-requests': {
+      id: '/business/team-finder/my-requests'
+      path: '/team-finder/my-requests'
+      fullPath: '/business/team-finder/my-requests'
+      preLoaderRoute: typeof BusinessTeamFinderMyRequestsRouteImport
+      parentRoute: typeof BusinessRoute
     }
     '/growth/ideas/': {
       id: '/growth/ideas/'
@@ -223,15 +574,68 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GrowthIdeasNewRouteImport
       parentRoute: typeof GrowthRoute
     }
+    '/business/team-finder/$teamId/join': {
+      id: '/business/team-finder/$teamId/join'
+      path: '/join'
+      fullPath: '/business/team-finder/$teamId/join'
+      preLoaderRoute: typeof BusinessTeamFinderTeamIdJoinRouteImport
+      parentRoute: typeof BusinessTeamFinderTeamIdRoute
+    }
+    '/business/team-finder/messages/$requestId': {
+      id: '/business/team-finder/messages/$requestId'
+      path: '/team-finder/messages/$requestId'
+      fullPath: '/business/team-finder/messages/$requestId'
+      preLoaderRoute: typeof BusinessTeamFinderMessagesRequestIdRouteImport
+      parentRoute: typeof BusinessRoute
+    }
   }
 }
 
+interface BusinessTeamFinderTeamIdRouteChildren {
+  BusinessTeamFinderTeamIdJoinRoute: typeof BusinessTeamFinderTeamIdJoinRoute
+}
+
+const BusinessTeamFinderTeamIdRouteChildren: BusinessTeamFinderTeamIdRouteChildren =
+  {
+    BusinessTeamFinderTeamIdJoinRoute: BusinessTeamFinderTeamIdJoinRoute,
+  }
+
+const BusinessTeamFinderTeamIdRouteWithChildren =
+  BusinessTeamFinderTeamIdRoute._addFileChildren(
+    BusinessTeamFinderTeamIdRouteChildren,
+  )
+
 interface BusinessRouteChildren {
+  BusinessFundingRoute: typeof BusinessFundingRoute
+  BusinessIncubatorsRoute: typeof BusinessIncubatorsRoute
+  BusinessPlanRoute: typeof BusinessPlanRoute
   BusinessIndexRoute: typeof BusinessIndexRoute
+  BusinessDirectoryIdRoute: typeof BusinessDirectoryIdRoute
+  BusinessDirectoryNewRoute: typeof BusinessDirectoryNewRoute
+  BusinessMarketplaceNewRoute: typeof BusinessMarketplaceNewRoute
+  BusinessTeamFinderTeamIdRoute: typeof BusinessTeamFinderTeamIdRouteWithChildren
+  BusinessTeamFinderMyRequestsRoute: typeof BusinessTeamFinderMyRequestsRoute
+  BusinessDirectoryIndexRoute: typeof BusinessDirectoryIndexRoute
+  BusinessMarketplaceIndexRoute: typeof BusinessMarketplaceIndexRoute
+  BusinessTeamFinderIndexRoute: typeof BusinessTeamFinderIndexRoute
+  BusinessTeamFinderMessagesRequestIdRoute: typeof BusinessTeamFinderMessagesRequestIdRoute
 }
 
 const BusinessRouteChildren: BusinessRouteChildren = {
+  BusinessFundingRoute: BusinessFundingRoute,
+  BusinessIncubatorsRoute: BusinessIncubatorsRoute,
+  BusinessPlanRoute: BusinessPlanRoute,
   BusinessIndexRoute: BusinessIndexRoute,
+  BusinessDirectoryIdRoute: BusinessDirectoryIdRoute,
+  BusinessDirectoryNewRoute: BusinessDirectoryNewRoute,
+  BusinessMarketplaceNewRoute: BusinessMarketplaceNewRoute,
+  BusinessTeamFinderTeamIdRoute: BusinessTeamFinderTeamIdRouteWithChildren,
+  BusinessTeamFinderMyRequestsRoute: BusinessTeamFinderMyRequestsRoute,
+  BusinessDirectoryIndexRoute: BusinessDirectoryIndexRoute,
+  BusinessMarketplaceIndexRoute: BusinessMarketplaceIndexRoute,
+  BusinessTeamFinderIndexRoute: BusinessTeamFinderIndexRoute,
+  BusinessTeamFinderMessagesRequestIdRoute:
+    BusinessTeamFinderMessagesRequestIdRoute,
 }
 
 const BusinessRouteWithChildren = BusinessRoute._addFileChildren(
@@ -239,12 +643,22 @@ const BusinessRouteWithChildren = BusinessRoute._addFileChildren(
 )
 
 interface GrowthRouteChildren {
+  GrowthAssistantRoute: typeof GrowthAssistantRoute
+  GrowthCoursesRoute: typeof GrowthCoursesRoute
+  GrowthMyIdeasRoute: typeof GrowthMyIdeasRoute
+  GrowthSkillsRoute: typeof GrowthSkillsRoute
+  GrowthIndexRoute: typeof GrowthIndexRoute
   GrowthIdeasIdeaIdRoute: typeof GrowthIdeasIdeaIdRoute
   GrowthIdeasNewRoute: typeof GrowthIdeasNewRoute
   GrowthIdeasIndexRoute: typeof GrowthIdeasIndexRoute
 }
 
 const GrowthRouteChildren: GrowthRouteChildren = {
+  GrowthAssistantRoute: GrowthAssistantRoute,
+  GrowthCoursesRoute: GrowthCoursesRoute,
+  GrowthMyIdeasRoute: GrowthMyIdeasRoute,
+  GrowthSkillsRoute: GrowthSkillsRoute,
+  GrowthIndexRoute: GrowthIndexRoute,
   GrowthIdeasIdeaIdRoute: GrowthIdeasIdeaIdRoute,
   GrowthIdeasNewRoute: GrowthIdeasNewRoute,
   GrowthIdeasIndexRoute: GrowthIdeasIndexRoute,
@@ -270,6 +684,7 @@ const rootRouteChildren: RootRouteChildren = {
   DiscoverRoute: DiscoverRoute,
   GrowthRoute: GrowthRouteWithChildren,
   ProfileRoute: ProfileRouteWithChildren,
+  OpportunitiesIdRoute: OpportunitiesIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

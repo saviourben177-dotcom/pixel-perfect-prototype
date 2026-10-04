@@ -29,12 +29,12 @@ function Profile() {
             <p className="text-sm text-muted-foreground">{me.role} · {me.location}</p>
           </div>
         </div>
-        <button aria-label="Settings" className="grid size-11 place-items-center rounded-md border hover:bg-accent"><Settings className="size-4" /></button>
+        <Link to="/profile/settings" aria-label="Settings" className="grid size-11 place-items-center rounded-md border hover:bg-accent"><Settings className="size-4" /></Link>
       </div>
 
-      <div className="mb-8 grid grid-cols-3 divide-x rounded-lg border text-center">
+      <div className="mb-8 grid grid-cols-3 divide-x rounded-lg border bg-card text-center shadow-[var(--shadow-card)]">
         {[["Ideas", mine.length], ["Saved", 3], ["Applied", 2]].map(([l, n]) => (
-          <div key={l} className="p-4"><p className="tabular font-display text-2xl font-semibold">{n}</p><p className="text-sm text-muted-foreground">{l}</p></div>
+          <div key={l} className="p-4"><p className="tabular font-display text-2xl font-extrabold">{n}</p><p className="text-sm text-muted-foreground">{l}</p></div>
         ))}
       </div>
 
@@ -50,7 +50,7 @@ function Profile() {
           <h2 className="mt-3 text-base font-semibold">Your CV is 60% complete</h2>
           <p className="mt-1 text-sm text-muted-foreground">Add education and one project to tailor applications automatically.</p>
           <div className="mt-4 h-2 rounded-full bg-muted"><div className="h-2 w-3/5 rounded-full bg-primary" /></div>
-          <Link to="/discover" className="mt-4 inline-flex h-11 items-center text-sm font-semibold text-primary">Finish CV</Link>
+          <Link to="/profile/cv" className="mt-4 inline-flex h-11 items-center text-sm font-bold text-primary-strong">Finish CV</Link>
         </aside>
       </div>
     </AppShell>

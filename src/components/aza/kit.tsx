@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
 export const btn = {
-  primary: "inline-flex h-11 items-center justify-center gap-2 rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground hover:opacity-90 disabled:opacity-50",
+  primary: "inline-flex h-11 items-center justify-center gap-2 rounded-md bg-primary px-4 text-sm font-bold text-primary-foreground btn-raised hover:bg-primary-strong disabled:opacity-50",
   secondary: "inline-flex h-11 items-center justify-center gap-2 rounded-md border bg-background px-4 text-sm font-semibold hover:bg-accent disabled:opacity-50",
   ghost: "inline-flex h-11 items-center justify-center gap-2 rounded-md px-3 text-sm font-medium text-muted-foreground hover:bg-accent hover:text-foreground",
   danger: "inline-flex h-11 items-center justify-center gap-2 rounded-md border border-destructive/40 px-4 text-sm font-semibold text-destructive hover:bg-destructive/5",
@@ -25,7 +25,7 @@ export function Section({ title, action, children, className }: { title: string;
   return (
     <section className={cn("mb-8", className)}>
       <div className="mb-3 flex items-center justify-between gap-3">
-        <h2 className="text-lg font-semibold">{title}</h2>
+        <h2 className="text-lg font-bold">{title}</h2>
         {action}
       </div>
       {children}
@@ -113,7 +113,7 @@ export function LinkRow({ to, params, icon: Icon, title, sub, right }: { to: str
   return (
     <li>
       <Link to={to} {...(params ? { params: params as never } : {})} className="grid min-h-16 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 p-4 hover:bg-accent">
-        {Icon ? <span className="grid size-10 place-items-center rounded-md border bg-muted"><Icon className="size-4" /></span> : <span />}
+        {Icon ? <span className="grid size-10 place-items-center rounded-md border emboss-primary"><Icon className="size-4" /></span> : <span />}
         <span className="min-w-0">
           <span className="block truncate font-semibold">{title}</span>
           {sub && <span className="block truncate text-sm text-muted-foreground">{sub}</span>}
@@ -130,8 +130,8 @@ export function List({ children }: { children: ReactNode }) {
 
 export function Tile({ to, icon: Icon, title, sub }: { to: string; icon: LucideIcon; title: string; sub: string }) {
   return (
-    <Link to={to} className="flex flex-col gap-3 rounded-lg border p-4 hover:border-border-strong hover:bg-accent">
-      <Icon className="size-5 text-primary" />
+    <Link to={to} className="card-lift flex flex-col gap-3 rounded-lg border bg-card p-4">
+      <span className="grid size-10 place-items-center rounded-md border emboss-primary"><Icon className="size-5" /></span>
       <span>
         <span className="block font-semibold">{title}</span>
         <span className="block text-sm text-muted-foreground">{sub}</span>
@@ -152,8 +152,8 @@ export function Empty({ title, sub, action }: { title: string; sub?: string; act
 
 export function Stat({ label, value }: { label: string; value: ReactNode }) {
   return (
-    <div className="rounded-lg border p-4">
-      <p className="tabular font-display text-2xl font-semibold">{value}</p>
+    <div className="rounded-lg border bg-card p-4 shadow-[var(--shadow-card)]">
+      <p className="tabular font-display text-2xl font-extrabold">{value}</p>
       <p className="text-sm text-muted-foreground">{label}</p>
     </div>
   );
@@ -172,7 +172,7 @@ export function Pills<T extends string>({ options, value, onChange }: { options:
     <div className="-mx-4 mb-5 flex gap-2 overflow-x-auto px-4 pb-1 md:mx-0 md:flex-wrap md:px-0">
       {options.map((c) => (
         <button key={c} type="button" aria-pressed={value === c} onClick={() => onChange(c)}
-          className={cn("h-11 shrink-0 rounded-md border px-3.5 text-sm font-medium", value === c ? "border-foreground bg-foreground text-background" : "bg-background text-muted-foreground hover:text-foreground")}>
+          className={cn("h-11 shrink-0 rounded-md border px-3.5 text-sm font-medium", value === c ? "border-primary bg-primary-soft font-semibold text-primary-strong" : "bg-background text-muted-foreground hover:text-foreground")}>
           {c}
         </button>
       ))}

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowLeftRight, Calculator, Store, Users } from "lucide-react";
+import { ArrowLeftRight, Building2, Calculator, FileText, Landmark, Rocket, ShoppingBag, Store, Users } from "lucide-react";
+import { Tile } from "@/components/aza/kit";
 import { useState } from "react";
 import { AppShell } from "@/components/aza/app-shell";
 import { PageHeader, Tag } from "@/components/aza/ui";
@@ -31,6 +32,14 @@ function Business() {
   return (
     <AppShell>
       <PageHeader title="Business" sub="Tools you'll use every week" />
+      <div className="mb-8 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
+        <Tile to="/business/directory" icon={Building2} title="Directory" sub="Local businesses" />
+        <Tile to="/business/marketplace" icon={ShoppingBag} title="Marketplace" sub="Buy, sell, collaborate" />
+        <Tile to="/business/team-finder" icon={Users} title="Team Finder" sub="Join or build a team" />
+        <Tile to="/business/funding" icon={Landmark} title="Funding" sub="Loans, grants, equity" />
+        <Tile to="/business/incubators" icon={Rocket} title="Incubators" sub="Programmes near you" />
+        <Tile to="/business/plan" icon={FileText} title="Business plan" sub="Generate a draft" />
+      </div>
       <div role="tablist" className="sticky top-0 z-20 -mx-4 mb-6 flex gap-1 overflow-x-auto border-b bg-background px-4 md:top-16 md:mx-0 md:px-0">
         {sections.map((t) => (
           <button

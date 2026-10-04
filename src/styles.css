@@ -32,6 +32,9 @@
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-urgent: var(--urgent);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-primary-strong: var(--primary-strong);
   --color-urgent-soft: var(--urgent-soft);
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
@@ -59,7 +62,12 @@
   --accent-foreground: oklch(0.19 0.008 155);
   --destructive: oklch(0.58 0.22 27);
   --destructive-foreground: oklch(1 0 0);
+  --primary-strong: oklch(0.45 0.12 152);
+  --info: oklch(0.45 0.14 270);
+  --info-soft: oklch(0.95 0.03 270);
   --urgent: oklch(0.55 0.15 60);
+  --shadow-card: 0 1px 2px oklch(0.19 0.008 155 / 0.06), 0 1px 1px oklch(0.19 0.008 155 / 0.04);
+  --shadow-lift: 0 8px 20px -8px oklch(0.19 0.008 155 / 0.18), 0 2px 4px oklch(0.19 0.008 155 / 0.06);
   --urgent-soft: oklch(0.96 0.04 75);
   --border: oklch(0.92 0.006 155);
   --border-strong: oklch(0.87 0.008 155);
@@ -75,11 +83,32 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
   }
-  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.015em; }
+  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; font-weight: 700; }
+  h1 { font-weight: 800; }
   :focus-visible { outline: 2px solid var(--color-ring); outline-offset: 2px; }
 }
 
 @utility tabular { font-variant-numeric: tabular-nums; }
+/* Subtle lift: resting card shadow, rises on hover. */
+@utility card-lift {
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 150ms ease, transform 150ms ease, border-color 150ms ease;
+  &:hover { box-shadow: var(--shadow-lift); transform: translateY(-1px); border-color: var(--color-border-strong); }
+}
+/* Embossed coin for icons and org marks: top highlight, soft base shadow. */
+@utility emboss {
+  background-image: linear-gradient(180deg, oklch(1 0 0), var(--color-muted));
+  box-shadow: inset 0 1px 0 oklch(1 0 0), 0 1px 2px oklch(0.19 0.008 155 / 0.1);
+}
+@utility emboss-primary {
+  background-image: linear-gradient(180deg, oklch(0.97 0.04 155), oklch(0.92 0.06 155));
+  color: var(--color-primary-strong);
+  box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.8), 0 1px 2px oklch(0.45 0.12 152 / 0.2);
+}
+/* Pressed primary button with top light. */
+@utility btn-raised {
+  box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.25), 0 1px 2px oklch(0.45 0.12 152 / 0.35);
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }

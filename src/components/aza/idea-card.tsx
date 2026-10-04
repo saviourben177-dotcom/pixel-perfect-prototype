@@ -42,7 +42,7 @@ export function IdeaActions({ idea, full }: { idea: Idea; full?: boolean }) {
 
 export function IdeaCard({ idea }: { idea: Idea }) {
   return (
-    <article className="flex flex-col gap-3 rounded-lg border bg-card p-4 shadow-sm md:p-5">
+    <article className="card-lift flex flex-col gap-3 rounded-lg border bg-card p-4 md:p-5">
       <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
         <AuthorLine id={idea.author} hoursAgo={idea.hoursAgo} />
         <span className="hidden text-xs text-muted-foreground sm:block">{idea.stage}</span>

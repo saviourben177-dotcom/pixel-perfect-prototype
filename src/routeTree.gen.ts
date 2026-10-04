@@ -15,6 +15,12 @@ import { Route as DiscoverRouteImport } from './routes/discover'
 import { Route as GrowthRouteImport } from './routes/growth'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as BusinessIndexRouteImport } from './routes/business.index'
+import { Route as GrowthIndexRouteImport } from './routes/growth.index'
+import { Route as GrowthAssistantRouteImport } from './routes/growth.assistant'
+import { Route as GrowthCoursesRouteImport } from './routes/growth.courses'
+import { Route as GrowthMyIdeasRouteImport } from './routes/growth.my-ideas'
+import { Route as GrowthSkillsRouteImport } from './routes/growth.skills'
+import { Route as OpportunitiesIdRouteImport } from './routes/opportunities.$id'
 import { Route as ProfileIndexRouteImport } from './routes/profile.index'
 import { Route as GrowthIdeasIndexRouteImport } from './routes/growth.ideas.index'
 import { Route as GrowthIdeasIdeaIdRouteImport } from './routes/growth.ideas.$ideaId'
@@ -50,6 +56,36 @@ const BusinessIndexRoute = BusinessIndexRouteImport.update({
   path: '/',
   getParentRoute: () => BusinessRoute,
 } as any)
+const GrowthIndexRoute = GrowthIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => GrowthRoute,
+} as any)
+const GrowthAssistantRoute = GrowthAssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
+  getParentRoute: () => GrowthRoute,
+} as any)
+const GrowthCoursesRoute = GrowthCoursesRouteImport.update({
+  id: '/courses',
+  path: '/courses',
+  getParentRoute: () => GrowthRoute,
+} as any)
+const GrowthMyIdeasRoute = GrowthMyIdeasRouteImport.update({
+  id: '/my-ideas',
+  path: '/my-ideas',
+  getParentRoute: () => GrowthRoute,
+} as any)
+const GrowthSkillsRoute = GrowthSkillsRouteImport.update({
+  id: '/skills',
+  path: '/skills',
+  getParentRoute: () => GrowthRoute,
+} as any)
+const OpportunitiesIdRoute = OpportunitiesIdRouteImport.update({
+  id: '/opportunities/$id',
+  path: '/opportunities/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProfileIndexRoute = ProfileIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -77,7 +113,13 @@ export interface FileRoutesByFullPath {
   '/discover': typeof DiscoverRoute
   '/growth': typeof GrowthRouteWithChildren
   '/profile': typeof ProfileRouteWithChildren
+  '/growth/assistant': typeof GrowthAssistantRoute
+  '/growth/courses': typeof GrowthCoursesRoute
+  '/growth/my-ideas': typeof GrowthMyIdeasRoute
+  '/growth/skills': typeof GrowthSkillsRoute
+  '/opportunities/$id': typeof OpportunitiesIdRoute
   '/business/': typeof BusinessIndexRoute
+  '/growth/': typeof GrowthIndexRoute
   '/profile/': typeof ProfileIndexRoute
   '/growth/ideas/$ideaId': typeof GrowthIdeasIdeaIdRoute
   '/growth/ideas/new': typeof GrowthIdeasNewRoute
@@ -86,8 +128,13 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/discover': typeof DiscoverRoute
-  '/growth': typeof GrowthRouteWithChildren
+  '/growth/assistant': typeof GrowthAssistantRoute
+  '/growth/courses': typeof GrowthCoursesRoute
+  '/growth/my-ideas': typeof GrowthMyIdeasRoute
+  '/growth/skills': typeof GrowthSkillsRoute
+  '/opportunities/$id': typeof OpportunitiesIdRoute
   '/business': typeof BusinessIndexRoute
+  '/growth': typeof GrowthIndexRoute
   '/profile': typeof ProfileIndexRoute
   '/growth/ideas/$ideaId': typeof GrowthIdeasIdeaIdRoute
   '/growth/ideas/new': typeof GrowthIdeasNewRoute
@@ -100,7 +147,13 @@ export interface FileRoutesById {
   '/discover': typeof DiscoverRoute
   '/growth': typeof GrowthRouteWithChildren
   '/profile': typeof ProfileRouteWithChildren
+  '/growth/assistant': typeof GrowthAssistantRoute
+  '/growth/courses': typeof GrowthCoursesRoute
+  '/growth/my-ideas': typeof GrowthMyIdeasRoute
+  '/growth/skills': typeof GrowthSkillsRoute
+  '/opportunities/$id': typeof OpportunitiesIdRoute
   '/business/': typeof BusinessIndexRoute
+  '/growth/': typeof GrowthIndexRoute
   '/profile/': typeof ProfileIndexRoute
   '/growth/ideas/$ideaId': typeof GrowthIdeasIdeaIdRoute
   '/growth/ideas/new': typeof GrowthIdeasNewRoute
@@ -114,7 +167,13 @@ export interface FileRouteTypes {
     | '/discover'
     | '/growth'
     | '/profile'
+    | '/growth/assistant'
+    | '/growth/courses'
+    | '/growth/my-ideas'
+    | '/growth/skills'
+    | '/opportunities/$id'
     | '/business/'
+    | '/growth/'
     | '/profile/'
     | '/growth/ideas/$ideaId'
     | '/growth/ideas/new'
@@ -123,8 +182,13 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/discover'
-    | '/growth'
+    | '/growth/assistant'
+    | '/growth/courses'
+    | '/growth/my-ideas'
+    | '/growth/skills'
+    | '/opportunities/$id'
     | '/business'
+    | '/growth'
     | '/profile'
     | '/growth/ideas/$ideaId'
     | '/growth/ideas/new'
@@ -136,7 +200,13 @@ export interface FileRouteTypes {
     | '/discover'
     | '/growth'
     | '/profile'
+    | '/growth/assistant'
+    | '/growth/courses'
+    | '/growth/my-ideas'
+    | '/growth/skills'
+    | '/opportunities/$id'
     | '/business/'
+    | '/growth/'
     | '/profile/'
     | '/growth/ideas/$ideaId'
     | '/growth/ideas/new'
@@ -149,6 +219,7 @@ export interface RootRouteChildren {
   DiscoverRoute: typeof DiscoverRoute
   GrowthRoute: typeof GrowthRouteWithChildren
   ProfileRoute: typeof ProfileRouteWithChildren
+  OpportunitiesIdRoute: typeof OpportunitiesIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -195,6 +266,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BusinessIndexRouteImport
       parentRoute: typeof BusinessRoute
     }
+    '/growth/': {
+      id: '/growth/'
+      path: '/'
+      fullPath: '/growth/'
+      preLoaderRoute: typeof GrowthIndexRouteImport
+      parentRoute: typeof GrowthRoute
+    }
+    '/growth/assistant': {
+      id: '/growth/assistant'
+      path: '/assistant'
+      fullPath: '/growth/assistant'
+      preLoaderRoute: typeof GrowthAssistantRouteImport
+      parentRoute: typeof GrowthRoute
+    }
+    '/growth/courses': {
+      id: '/growth/courses'
+      path: '/courses'
+      fullPath: '/growth/courses'
+      preLoaderRoute: typeof GrowthCoursesRouteImport
+      parentRoute: typeof GrowthRoute
+    }
+    '/growth/my-ideas': {
+      id: '/growth/my-ideas'
+      path: '/my-ideas'
+      fullPath: '/growth/my-ideas'
+      preLoaderRoute: typeof GrowthMyIdeasRouteImport
+      parentRoute: typeof GrowthRoute
+    }
+    '/growth/skills': {
+      id: '/growth/skills'
+      path: '/skills'
+      fullPath: '/growth/skills'
+      preLoaderRoute: typeof GrowthSkillsRouteImport
+      parentRoute: typeof GrowthRoute
+    }
+    '/opportunities/$id': {
+      id: '/opportunities/$id'
+      path: '/opportunities/$id'
+      fullPath: '/opportunities/$id'
+      preLoaderRoute: typeof OpportunitiesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/profile/': {
       id: '/profile/'
       path: '/'
@@ -239,12 +352,22 @@ const BusinessRouteWithChildren = BusinessRoute._addFileChildren(
 )
 
 interface GrowthRouteChildren {
+  GrowthAssistantRoute: typeof GrowthAssistantRoute
+  GrowthCoursesRoute: typeof GrowthCoursesRoute
+  GrowthMyIdeasRoute: typeof GrowthMyIdeasRoute
+  GrowthSkillsRoute: typeof GrowthSkillsRoute
+  GrowthIndexRoute: typeof GrowthIndexRoute
   GrowthIdeasIdeaIdRoute: typeof GrowthIdeasIdeaIdRoute
   GrowthIdeasNewRoute: typeof GrowthIdeasNewRoute
   GrowthIdeasIndexRoute: typeof GrowthIdeasIndexRoute
 }
 
 const GrowthRouteChildren: GrowthRouteChildren = {
+  GrowthAssistantRoute: GrowthAssistantRoute,
+  GrowthCoursesRoute: GrowthCoursesRoute,
+  GrowthMyIdeasRoute: GrowthMyIdeasRoute,
+  GrowthSkillsRoute: GrowthSkillsRoute,
+  GrowthIndexRoute: GrowthIndexRoute,
   GrowthIdeasIdeaIdRoute: GrowthIdeasIdeaIdRoute,
   GrowthIdeasNewRoute: GrowthIdeasNewRoute,
   GrowthIdeasIndexRoute: GrowthIdeasIndexRoute,
@@ -270,6 +393,7 @@ const rootRouteChildren: RootRouteChildren = {
   DiscoverRoute: DiscoverRoute,
   GrowthRoute: GrowthRouteWithChildren,
   ProfileRoute: ProfileRouteWithChildren,
+  OpportunitiesIdRoute: OpportunitiesIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Bookmark, FileText, Settings } from "lucide-react";
+import { Bookmark, FileText, Lightbulb, PenLine, Settings } from "lucide-react";
+import { Tile } from "@/components/aza/kit";
 import { AppShell } from "@/components/aza/app-shell";
 import { IdeaCard } from "@/components/aza/idea-card";
 import { Avatar, OpportunityCard } from "@/components/aza/ui";
@@ -38,6 +39,12 @@ function Profile() {
         ))}
       </div>
 
+      <div className="mb-8 grid grid-cols-2 gap-3 md:grid-cols-4">
+        <Tile to="/profile/edit" icon={PenLine} title="Edit profile" sub="Name, role, bio" />
+        <Tile to="/profile/cv" icon={FileText} title="CV" sub="View and tailor" />
+        <Tile to="/profile/saved" icon={Bookmark} title="Saved" sub="Opportunities, ideas" />
+        <Tile to="/growth/my-ideas" icon={Lightbulb} title="My ideas" sub="Manage posts" />
+      </div>
       <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
         <div>
           <h2 className="mb-3 flex items-center gap-2 text-lg font-semibold"><Bookmark className="size-4" /> Saved</h2>

@@ -18,7 +18,7 @@ function Queue() {
   async function act(id: string, kind: string, action: "approve" | "reject" | "remove") {
     await api.moderate(kind, id, action);
     setList(list.filter((q) => q.id !== id));
-    toast.success(`${action[0].toUpperCase()}${action.slice(1)}d`);
+    toast.success(`${action.charAt(0).toUpperCase()}${action.slice(1)}d`);
   }
   return (
     <AppShell>
@@ -32,7 +32,6 @@ function Queue() {
               <div className="flex gap-2">
                 <button className={btn.primary} onClick={() => act(q.id, q.kind, "approve")}>Approve</button>
                 <button className={btn.secondary} onClick={() => act(q.id, q.kind, "reject")}>Reject</button>
-                {"curator" === "admin" && <button className={btn.danger} onClick={() => act(q.id, q.kind, "remove")}>Remove</button>}
               </div>
             </li>
           ))}

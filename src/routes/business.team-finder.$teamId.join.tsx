@@ -17,7 +17,7 @@ function Join() {
   return (
     <AppShell>
       <BackLink to="/business/team-finder" label="Team Finder" />
-      <PageHeader title="Request to join" sub={t?.name} />
+      <PageHeader title="Request to join" sub={t?.name ?? ""} />
       <Form onSubmit={(d) => api.sendJoinRequest(teamId, d)} submitLabel="Send request" success="Request sent" cancelTo="/business/team-finder">
         <SelectField label="Role" name="role" options={t?.roles ?? ["Any"]} />
         <TextArea label="Why you?" name="note" required />

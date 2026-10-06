@@ -14,8 +14,8 @@ export const Route = createFileRoute("/profile/edit")({
       <PageHeader title="Edit profile" />
       <Form onSubmit={api.updateProfile} submitLabel="Save changes" cancelTo="/profile">
         <TextField label="Full name" name="name" required defaultValue={me.name} />
-        <TextField label="Role" name="role" defaultValue={me.role} />
-        <TextField label="Location" name="location" defaultValue={me.location} />
+        <TextField label="Role" name="role" defaultValue={me.role ?? ""} />
+        <TextField label="Location" name="location" defaultValue={me.location ?? ""} />
         <TextArea label="Bio" name="bio" />
       </Form>
     </AppShell>

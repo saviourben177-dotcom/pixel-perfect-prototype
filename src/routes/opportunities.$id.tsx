@@ -13,7 +13,9 @@ export const Route = createFileRoute("/opportunities/$id")({
   loader: ({ params }) => {
     const o = opportunities.find((x) => x.id === params.id);
     if (!o) throw notFound();
-    return { o, d: opportunityDetails[o.id] };
+    const d = opportunityDetails[o.id];
+    if (!d) throw notFound();
+    return { o, d };
   },
   head: ({ loaderData }) => loaderData ? {
     meta: [

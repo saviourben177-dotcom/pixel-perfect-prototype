@@ -17,7 +17,7 @@ function SearchPage() {
   const [q, setQ] = useState("");
   const t = q.toLowerCase().trim();
   const o = t ? opportunities.filter((x) => (x.title + x.org + x.category).toLowerCase().includes(t)) : [];
-  const i = t ? ideas.filter((x) => x.title.toLowerCase().includes(t)) : [];
+  const i = t ? ideas.filter((x) => x.pitch.toLowerCase().includes(t)) : [];
   return (
     <AppShell>
       <PageHeader title="Search" />

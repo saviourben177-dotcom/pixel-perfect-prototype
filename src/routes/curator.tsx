@@ -18,7 +18,7 @@ function Queue() {
   async function act(id: string, kind: string, action: "approve" | "reject" | "remove") {
     await api.moderate(kind, id, action);
     setList(list.filter((q) => q.id !== id));
-    toast.success(`${action[0].toUpperCase()}${action.slice(1)}d`);
+    toast.success(`${action.charAt(0).toUpperCase()}${action.slice(1)}d`);
   }
   return (
     <AppShell>

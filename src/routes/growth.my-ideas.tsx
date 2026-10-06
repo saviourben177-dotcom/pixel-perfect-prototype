@@ -25,7 +25,7 @@ function MyIdeas() {
         <ul className="grid gap-3">
           {list.map((i) => (
             <li key={i.id} className="grid gap-3 rounded-lg border bg-card p-4 shadow-[var(--shadow-card)] sm:grid-cols-[1fr_auto] sm:items-center">
-              <Link to="/growth/ideas/$ideaId" params={{ ideaId: i.id }} className="font-bold hover:underline">{i.title}</Link>
+              <Link to="/growth/ideas/$ideaId" params={{ ideaId: i.id }} className="font-bold hover:underline">{i.pitch.slice(0, 80)}</Link>
               <div className="flex gap-2">
                 <select aria-label="Stage" defaultValue={stages[0]} onChange={(e) => api.setIdeaStage(i.id, e.target.value).then(() => toast.success("Stage updated"))} className="h-11 rounded-md border border-input bg-background px-3 text-sm">
                   {stages.map((s) => <option key={s}>{s}</option>)}

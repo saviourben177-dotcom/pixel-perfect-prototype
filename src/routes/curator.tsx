@@ -32,7 +32,6 @@ function Queue() {
               <div className="flex gap-2">
                 <button className={btn.primary} onClick={() => act(q.id, q.kind, "approve")}>Approve</button>
                 <button className={btn.secondary} onClick={() => act(q.id, q.kind, "reject")}>Reject</button>
-                {"curator" === "admin" && <button className={btn.danger} onClick={() => act(q.id, q.kind, "remove")}>Remove</button>}
               </div>
             </li>
           ))}

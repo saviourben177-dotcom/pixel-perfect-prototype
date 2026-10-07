@@ -29,7 +29,13 @@ export const api = {
   deleteComment: (id: string) => wait(id),
   addSkill: (skillId: string) => wait(skillId),
   updateSkillProgress: (skillId: string, percent: number) => wait({ skillId, percent }),
-  askAssistant: (q: string) => wait(`Here's a starting point for "${q}": pick one free course this week, then share what you built in Ideas.`),
+  // Real app: `import { askGrowthHub } from "@/lib/actions/growth-assistant"` (Groq, same key as CV builder)
+  askAssistant: async (question: string): Promise<{ answer: string; hasResults: boolean }> => {
+    const q = question.trim();
+    if (!q) throw new Error("Question cannot be empty");
+    if (q.length > 300) throw new Error("Question is too long");
+    return wait({ answer: `Here's a starting point for "${q}": pick one free course this week, then share what you built in Ideas.`, hasResults: true });
+  },
   // business
   createBusiness: (d: Payload) => wait(d),
   rateBusiness: (id: string, stars: number, comment: string) => wait({ id, stars, comment }),

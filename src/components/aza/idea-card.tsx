@@ -4,6 +4,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import type { Idea } from "@/lib/aza-data";
 import { AuthorLine, Tag } from "./ui";
+import { ReportButton } from "./report";
 
 function countComments(i: Idea) {
   return i.comments.reduce((n, c) => n + 1 + (c.replies?.length ?? 0), 0);
@@ -36,6 +37,7 @@ export function IdeaActions({ idea, full }: { idea: Idea; full?: boolean }) {
       >
         <Share2 className="size-4" strokeWidth={2} />
       </button>
+      <ReportButton className="ml-auto h-11 min-w-11" target={{ type: "post", id: idea.id, userId: idea.author, content: idea.pitch }} />
     </div>
   );
 }

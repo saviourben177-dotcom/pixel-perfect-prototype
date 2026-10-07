@@ -5,6 +5,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { AppShell } from "@/components/aza/app-shell";
 import { IdeaActions } from "@/components/aza/idea-card";
 import { AuthorLine, Tag } from "@/components/aza/ui";
+import { LongPressReport } from "@/components/aza/report";
 import { ideas, me, getPerson, type Comment } from "@/lib/aza-data";
 
 export const Route = createFileRoute("/growth/ideas/$ideaId")({
@@ -112,8 +113,10 @@ function IdeaThread() {
 function CommentItem({ c, op }: { c: Comment; op: string }) {
   return (
     <li>
-      <AuthorLine id={c.author} hoursAgo={c.hoursAgo} op={c.author === op} />
-      <p className="mt-2 pl-[52px] text-base leading-relaxed">{c.body}</p>
+      <LongPressReport target={{ type: "comment", id: c.id, userId: c.author, content: c.body }}>
+        <AuthorLine id={c.author} hoursAgo={c.hoursAgo} op={c.author === op} />
+        <p className="mt-2 pl-[52px] text-base leading-relaxed">{c.body}</p>
+      </LongPressReport>
       {c.replies && c.replies.length > 0 && (
         <ul className="ml-5 mt-4 space-y-5 border-l-2 pl-6">
           {c.replies.map((r) => <CommentItem key={r.id} c={r} op={op} />)}

@@ -5,3 +5,4 @@
 - [x] Profile: edit, CV view/edit, saved, settings
 - [x] Opportunity detail, notifications, search, prices
 - [x] Login, signup, onboarding, welcome; help, about, privacy; curator, admin
+- [x] Reporting: posts, chat messages, 2s long-press on comments, reason picker, curator/admin reports queue

@@ -4,6 +4,7 @@ import { useState, type FormEvent } from "react";
 import { AppShell } from "@/components/aza/app-shell";
 import { BackLink, btn } from "@/components/aza/kit";
 import { PageHeader } from "@/components/aza/ui";
+import { ReportButton } from "@/components/aza/report";
 import { getPerson, me, messages, timeAgo } from "@/lib/aza-data";
 import { api } from "@/lib/aza/api";
 import { meta } from "@/lib/aza/meta";
@@ -37,7 +38,8 @@ function Chat() {
             return (
               <li key={m.id} className={cn("max-w-[85%]", mine && "ml-auto text-right")}>
                 <p className={cn("inline-block rounded-lg px-3.5 py-2.5 text-left text-sm", mine ? "bg-primary text-primary-foreground" : "border bg-card")}>{m.body}</p>
-                <p className="mt-1 text-xs text-muted-foreground">{getPerson(m.author).name} · {timeAgo(m.hoursAgo)}</p>
+                <p className={cn("mt-1 flex items-center gap-1 text-xs text-muted-foreground", mine && "justify-end")}>{getPerson(m.author).name} · {timeAgo(m.hoursAgo)}
+                  {!mine && <ReportButton className="size-8" target={{ type: "message", id: m.id, userId: m.author, content: m.body }} />}</p>
               </li>
             );
           })}

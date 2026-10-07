@@ -7,6 +7,7 @@ import { PageHeader, Tag } from "@/components/aza/ui";
 import { curatorQueue, getPerson, timeAgo } from "@/lib/aza-data";
 import { api } from "@/lib/aza/api";
 import { meta } from "@/lib/aza/meta";
+import { ReportsQueue } from "@/components/aza/reports-queue";
 
 export const Route = createFileRoute("/curator")({
   head: () => meta("Curator", "Review submitted opportunities, businesses and ideas."),
@@ -37,6 +38,7 @@ function Queue() {
           ))}
         </ul>
       )}
+      <ReportsQueue />
     </AppShell>
   );
 }

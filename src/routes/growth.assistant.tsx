@@ -14,7 +14,7 @@ export const Route = createFileRoute("/growth/assistant")({
 });
 
 function Assistant() {
-  const [msgs, setMsgs] = useState<{ me: boolean; text: string }[]>([]);
+  const [msgs, setMsgs] = useState<{ me: boolean; text: string; note?: string; error?: boolean }[]>([]);
   const [busy, setBusy] = useState(false);
   async function send(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -24,9 +24,14 @@ function Assistant() {
     f.reset();
     setMsgs((m) => [...m, { me: true, text: q }]);
     setBusy(true);
-    const a = await api.askAssistant(q);
-    setMsgs((m) => [...m, { me: false, text: a }]);
-    setBusy(false);
+    try {
+      const { answer, hasResults } = await api.askAssistant(q);
+      setMsgs((m) => [...m, { me: false, text: answer, note: hasResults ? undefined : "No matching opportunities or courses on Aza yet." }]);
+    } catch (err) {
+      setMsgs((m) => [...m, { me: false, text: err instanceof Error ? err.message : "Something went wrong. Try again.", error: true }]);
+    } finally {
+      setBusy(false);
+    }
   }
   return (
     <AppShell>
@@ -36,12 +41,15 @@ function Assistant() {
         <div className="mb-4 min-h-48 space-y-3 rounded-lg border bg-muted/50 p-4">
           {msgs.length === 0 && <p className="text-sm text-muted-foreground">Try: "How do I start learning product design for free?"</p>}
           {msgs.map((m, i) => (
-            <p key={i} className={cn("max-w-[85%] rounded-lg px-3.5 py-2.5 text-sm", m.me ? "ml-auto bg-primary text-primary-foreground" : "border bg-card")}>{m.text}</p>
+            <div key={i} className={cn("max-w-[85%]", m.me && "ml-auto")}>
+              <p className={cn("whitespace-pre-wrap rounded-lg px-3.5 py-2.5 text-sm", m.me ? "bg-primary text-primary-foreground" : m.error ? "border border-destructive/40 bg-card text-destructive" : "border bg-card")}>{m.text}</p>
+              {m.note && <p className="mt-1 text-xs text-muted-foreground">{m.note}</p>}
+            </div>
           ))}
           {busy && <p className="text-sm text-muted-foreground">Thinking…</p>}
         </div>
         <form onSubmit={send} className="flex gap-2">
-          <input name="q" aria-label="Your question" placeholder="Ask a question" className="h-11 min-w-0 flex-1 rounded-md border border-input bg-background px-3 text-sm" />
+          <input name="q" aria-label="Your question" placeholder="Ask a question" maxLength={300} disabled={busy} className="h-11 min-w-0 flex-1 rounded-md border border-input bg-background px-3 text-sm" />
           <button className={btn.primary} aria-label="Send"><Send className="size-4" /></button>
         </form>
       </div>

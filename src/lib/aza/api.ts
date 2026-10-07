@@ -2,6 +2,8 @@
 // To hook up the real app, replace each body with your Supabase query / server action.
 // Signatures use the real app's types from ./types so the swap is drop-in.
 type Payload = Record<string, FormDataEntryValue>;
+export type ReportType = "post" | "comment" | "message";
+export type NewReport = { report_type: ReportType; target_id: string; reported_user_id: string; content: string; reason: string; notes: string | null };
 const wait = <T,>(v: T) => new Promise<T>((r) => setTimeout(() => r(v), 400));
 
 export const api = {
@@ -40,6 +42,9 @@ export const api = {
   sendMessage: (requestId: string, body: string) => wait({ requestId, body }),
   // notifications
   markAllRead: () => wait(true),
+  // reports — real app: createReport() server action, stored in public.reports for curator/admin (saviourben177@gmail.com)
+  createReport: (r: NewReport) => wait({ ...r, created_at: new Date().toISOString() }),
+  resolveReport: (id: string, action: "dismiss" | "remove") => wait({ id, action }),
   // curator / admin
   saveOpportunityAdmin: (d: Payload) => wait(d),
   saveCuratorItem: (kind: string, d: Payload) => wait({ kind, ...d }),

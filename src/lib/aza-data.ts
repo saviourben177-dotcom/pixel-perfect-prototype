@@ -203,3 +203,9 @@ export const curatorQueue = [
   { id: "q2", kind: "Business", title: "Danjuma Blocks", by: "tunde", hoursAgo: 20 },
   { id: "q3", kind: "Idea", title: "Street diesel sharing", by: "kofi", hoursAgo: 48 },
 ];
+
+export const reports = [
+  { id: "r1", type: "comment", content: "DM me for guaranteed 10x returns on crypto", reporter: "kofi", reported: "tunde", reason: "Spam or scam", hoursAgo: 2 },
+  { id: "r2", type: "post", content: "Street diesel sharing — pay upfront to my personal account", reporter: "ada", reported: "kofi", reason: "False or misleading", hoursAgo: 9 },
+  { id: "r3", type: "message", content: "You're useless, stop applying", reporter: "ada", reported: "tunde", reason: "Harassment or bullying", hoursAgo: 30 },
+];

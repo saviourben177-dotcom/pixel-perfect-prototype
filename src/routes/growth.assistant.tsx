@@ -14,7 +14,7 @@ export const Route = createFileRoute("/growth/assistant")({
 });
 
 function Assistant() {
-  const [msgs, setMsgs] = useState<{ me: boolean; text: string; note?: string; error?: boolean }[]>([]);
+  const [msgs, setMsgs] = useState<{ me: boolean; text: string; note?: string | undefined; error?: boolean }[]>([]);
   const [busy, setBusy] = useState(false);
   async function send(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();

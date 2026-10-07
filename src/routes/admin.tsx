@@ -7,6 +7,7 @@ import { PageHeader, Tag } from "@/components/aza/ui";
 import { curatorQueue, getPerson, timeAgo } from "@/lib/aza-data";
 import { api } from "@/lib/aza/api";
 import { meta } from "@/lib/aza/meta";
+import { ReportsQueue } from "@/components/aza/reports-queue";
 
 export const Route = createFileRoute("/admin")({
   head: () => meta("Admin", "Moderate content and manage the platform."),
@@ -38,6 +39,7 @@ function Queue() {
           ))}
         </ul>
       )}
+      <ReportsQueue />
     </AppShell>
   );
 }

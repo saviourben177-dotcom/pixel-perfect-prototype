@@ -4,6 +4,7 @@
 type Payload = Record<string, FormDataEntryValue>;
 export type ReportType = "post" | "comment" | "message";
 export type NewReport = { report_type: ReportType; target_id: string; reported_user_id: string; content: string; reason: string; notes: string | null };
+import { askGrowthAssistant, generateBusinessPlan } from "./ai.functions";
 const wait = <T,>(v: T) => new Promise<T>((r) => setTimeout(() => r(v), 400));
 
 export const api = {
@@ -29,19 +30,14 @@ export const api = {
   deleteComment: (id: string) => wait(id),
   addSkill: (skillId: string) => wait(skillId),
   updateSkillProgress: (skillId: string, percent: number) => wait({ skillId, percent }),
-  // Real app: `import { askGrowthHub } from "@/lib/actions/growth-assistant"` (Groq, same key as CV builder)
-  askAssistant: async (question: string): Promise<{ answer: string; hasResults: boolean }> => {
-    const q = question.trim();
-    if (!q) throw new Error("Question cannot be empty");
-    if (q.length > 300) throw new Error("Question is too long");
-    return wait({ answer: `Here's a starting point for "${q}": pick one free course this week, then share what you built in Ideas.`, hasResults: true });
-  },
+  // Groq via server function (key stays on the server)
+  askAssistant: (question: string) => askGrowthAssistant({ data: { question } }),
   // business
   createBusiness: (d: Payload) => wait(d),
   rateBusiness: (id: string, stars: number, comment: string) => wait({ id, stars, comment }),
   createListing: (d: Payload) => wait(d),
   deleteListing: (id: string) => wait(id),
-  generateBusinessPlan: (d: Payload) => wait(d),
+  generateBusinessPlan: (d: Payload) => generateBusinessPlan({ data: { name: String(d.name ?? ""), industry: String(d.industry ?? ""), problem: String(d.problem ?? ""), customers: String(d.customers ?? ""), budget: String(d.budget ?? "") } }),
   // team finder
   sendJoinRequest: (ideaId: string, d: Payload) => wait({ ideaId, ...d }),
   respondToRequest: (id: string, status: "accepted" | "declined") => wait({ id, status }),

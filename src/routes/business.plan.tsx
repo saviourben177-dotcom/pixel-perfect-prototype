@@ -1,23 +1,39 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { toast } from "sonner";
 import { AppShell } from "@/components/aza/app-shell";
-import { BackLink, Form, SelectField, TextArea, TextField } from "@/components/aza/kit";
+import { BackLink, Form, SelectField, TextArea, TextField, btn } from "@/components/aza/kit";
 import { PageHeader } from "@/components/aza/ui";
 import { api } from "@/lib/aza/api";
 import { meta } from "@/lib/aza/meta";
 
 export const Route = createFileRoute("/business/plan")({
   head: () => meta("Business plan generator", "Answer a few questions and get a draft business plan."),
-  component: () => (
+  component: PlanPage,
+});
+
+function PlanPage() {
+  const [plan, setPlan] = useState<string | null>(null);
+  return (
     <AppShell>
       <BackLink to="/business" label="Business" />
       <PageHeader title="Business plan" sub="Answer five questions, get a draft you can edit" />
-      <Form onSubmit={api.generateBusinessPlan} submitLabel="Generate plan" success="Draft plan ready">
+      <Form onSubmit={async (d) => setPlan((await api.generateBusinessPlan(d)).plan)} submitLabel="Generate plan" success="Draft plan ready">
         <TextField label="Business name" name="name" required />
         <SelectField label="Industry" name="industry" options={["Agriculture", "Food", "Retail", "Tech", "Energy", "Services"]} />
         <TextArea label="What problem do you solve?" name="problem" required />
         <TextArea label="Who are your customers?" name="customers" rows={3} />
         <TextField label="Startup budget" name="budget" placeholder="₦" />
       </Form>
+      {plan && (
+        <section className="mt-8 max-w-2xl rounded-lg border bg-card p-5 shadow-[var(--shadow-card)]">
+          <div className="mb-3 flex items-center justify-between gap-2">
+            <h2 className="text-lg">Your draft plan</h2>
+            <button type="button" className={btn.secondary} onClick={() => { navigator.clipboard?.writeText(plan); toast.success("Copied"); }}>Copy</button>
+          </div>
+          <p className="whitespace-pre-wrap text-sm leading-relaxed">{plan}</p>
+        </section>
+      )}
     </AppShell>
-  ),
-});
+  );
+}

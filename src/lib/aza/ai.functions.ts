@@ -4,7 +4,7 @@ import { createServerFn } from "@tanstack/react-start";
 const MODEL = "openai/gpt-oss-120b";
 
 async function groq(system: string, user: string) {
-  const key = process.env.GROQ_API_KEY;
+  const key = process.env['GROQ_API_KEY'];
   if (!key) throw new Error("AI is not configured yet.");
   const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
     method: "POST",

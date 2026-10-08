@@ -37,7 +37,7 @@ export const api = {
   rateBusiness: (id: string, stars: number, comment: string) => wait({ id, stars, comment }),
   createListing: (d: Payload) => wait(d),
   deleteListing: (id: string) => wait(id),
-  generateBusinessPlan: (d: Payload) => generateBusinessPlan({ data: { name: String(d.name ?? ""), industry: String(d.industry ?? ""), problem: String(d.problem ?? ""), customers: String(d.customers ?? ""), budget: String(d.budget ?? "") } }),
+  generateBusinessPlan: (d: Payload) => generateBusinessPlan({ data: { name: String(d['name'] ?? ""), industry: String(d['industry'] ?? ""), problem: String(d['problem'] ?? ""), customers: String(d['customers'] ?? ""), budget: String(d['budget'] ?? "") } }),
   // team finder
   sendJoinRequest: (ideaId: string, d: Payload) => wait({ ideaId, ...d }),
   respondToRequest: (id: string, status: "accepted" | "declined") => wait({ id, status }),
